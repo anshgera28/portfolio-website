@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 interface Skill {
   name: string;
@@ -10,12 +10,17 @@ interface Skill {
 }
 
 const skills: Skill[] = [
-  { name: 'JavaScript', level: 90, icon: '🚀' },
-  { name: 'React', level: 85, icon: '⚛️' },
-  { name: 'Next.js', level: 80, icon: '⏭️' },
-  { name: 'TypeScript', level: 75, icon: '📘' },
-  { name: 'Node.js', level: 70, icon: '🟢' },
-  { name: 'Tailwind CSS', level: 85, icon: '🎨' },
+  { name: "JavaScript", level: 90, icon: "🚀" },
+  { name: "React", level: 85, icon: "⚛️" },
+  { name: "Next.js", level: 80, icon: "⏭️" },
+  { name: "TypeScript", level: 75, icon: "📘" },
+  { name: "Node.js", level: 70, icon: "🟢" },
+  { name: "Tailwind CSS", level: 85, icon: "🎨" },
+  { name: "Java", level: 85, icon: "☕" },
+  { name: "Spring Boot", level: 80, icon: "🍃" },
+  { name: "MongoDB", level: 75, icon: "🍃" },
+  { name: "HTML", level: 95, icon: "📄" },
+  { name: "CSS", level: 90, icon: "🎨" },
 ];
 
 const Skills = () => {
@@ -25,20 +30,24 @@ const Skills = () => {
   });
 
   return (
-    <section id="skills" className="py-20 bg-gray-900">
+    <section
+      id="skills"
+      className="py-24 bg-gradient-to-b from-gray-800 to-gray-900"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-            My Skills
+          <h2 className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+            Technical Skills
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Here are some of the technologies and tools I work with on a daily basis.
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Here are some of the technologies and tools I work with on a daily
+            basis.
           </p>
         </motion.div>
 
@@ -49,21 +58,31 @@ const Skills = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: index * 0.2, duration: 0.8 }}
-              className="bg-gray-800 p-6 rounded-lg"
+              className="group bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-700/50 hover:border-indigo-500/50 transition-all duration-300"
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">{skill.icon}</span>
-                  <h3 className="text-xl font-semibold">{skill.name}</h3>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                    {skill.icon}
+                  </span>
+                  <h3 className="text-2xl font-semibold text-white group-hover:text-indigo-400 transition-colors duration-300">
+                    {skill.name}
+                  </h3>
                 </div>
-                <span className="text-gray-400">{skill.level}%</span>
+                <span className="text-indigo-400 font-medium">
+                  {skill.level}%
+                </span>
               </div>
-              <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="h-3 bg-gray-700/50 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${skill.level}%` } : {}}
-                  transition={{ delay: index * 0.2, duration: 1 }}
-                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                  transition={{
+                    delay: index * 0.2,
+                    duration: 1.5,
+                    ease: "easeOut",
+                  }}
+                  className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
                 />
               </div>
             </motion.div>
